@@ -25,5 +25,7 @@ View Tag ***v1.0.0-Setup***
 
 2. Create a custom note item view. See **note_list_item.xml**
 
+3. Create a data transfer object with propper Getters, Setters, and Constructors. See **NoteEntity.java** as an example
+
 Notes:
 - [DataBinding for nested views](https://medium.com/androiddevelopers/android-data-binding-that-include-thing-1c8791dd6038#.lmx38b8gs)
