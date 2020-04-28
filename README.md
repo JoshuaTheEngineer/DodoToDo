@@ -27,5 +27,7 @@ View Tag ***v1.0.0-Setup***
 
 3. Create a data transfer object with propper Getters, Setters, and Constructors. See **NoteEntity.java** as an example
 
+    - To test it, we need to create Sample Data. See 'SampleData.java'
+
 Notes:
 - [DataBinding for nested views](https://medium.com/androiddevelopers/android-data-binding-that-include-thing-1c8791dd6038#.lmx38b8gs)

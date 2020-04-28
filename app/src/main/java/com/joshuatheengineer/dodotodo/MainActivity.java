@@ -4,21 +4,30 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.joshuatheengineer.dodotodo.database.NoteEntity;
 import com.joshuatheengineer.dodotodo.databinding.ActivityMainBinding;
+import com.joshuatheengineer.dodotodo.utilities.SampleData;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     // declare binding
     private ActivityMainBinding binding;
+
+    // will hold notes data
+    private List<NoteEntity> notesData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         // the order matters, bind first then add toolbar binding
         // https://stackoverflow.com/questions/34636934/android-data-binding-setsupportactionbar
         setSupportActionBar(binding.toolbar);
-
 
         // Method to initialize Recyclerview
         initRecyclerView();
@@ -41,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        // gets all Notes
+        notesData.addAll(SampleData.getNotes());
+        for( NoteEntity note : notesData){
+            // Print in console to see if it works
+            Log.i("DodoTodo", note.toString());
+        }
     }
 
     /**
