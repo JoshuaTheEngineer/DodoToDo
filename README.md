@@ -23,5 +23,7 @@ View Tag ***v1.0.0-Setup***
         i. jakewharton:butterknife
         ii. jakewharton:butterknife-compiler (added as annotationProcessor)
 
+2. Create a custom note item view. See **note_list_item.xml**
+
 Notes:
 - [DataBinding for nested views](https://medium.com/androiddevelopers/android-data-binding-that-include-thing-1c8791dd6038#.lmx38b8gs)
