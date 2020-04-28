@@ -8,3 +8,7 @@
     iii. I made it #FFFFF or white and renamed it as the ic_add.xml
     iv. it will be in the drawable directory
     v. Repeat steps 1 to 4 with the remaining buttons
+
+2. Add [LifeCycle and Room dependencies](https://developer.android.com/topic/libraries/architecture/adding-components). This will include support for:
+    - LiveData
+    - ViewModel
