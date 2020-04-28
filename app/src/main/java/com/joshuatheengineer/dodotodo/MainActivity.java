@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     // will hold notes data
     private List<NoteEntity> notesData = new ArrayList<>();
 
+    // set up adapter that determines the UI for each note
+    private NotesAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
         // 'setHasFixedSize' prevents rows resizing
         binding.contentmain.recyclerView.setHasFixedSize(true);
         binding.contentmain.recyclerView.setLayoutManager(layoutManager);
+
+        // sets notes adapter to the recyclerview, in this scenario, it displays the SampleData
+        mAdapter = new NotesAdapter(notesData, this);
+        binding.contentmain.recyclerView.setAdapter(mAdapter);
     }
 
     @Override

@@ -1,5 +1,7 @@
 # DodoToDo
 
+Based off this [LinkedInLearning](https://www.linkedin.com/learning/building-an-android-app-with-architecture-components/)
+
 ## Step 1: Setup
 
 View Tag ***v1.0.0-Setup***
@@ -27,7 +29,9 @@ View Tag ***v1.0.0-Setup***
 
 3. Create a data transfer object with propper Getters, Setters, and Constructors. See **NoteEntity.java** as an example
 
-    - To test it, we need to create Sample Data. See 'SampleData.java'
+    - To test it, we need to create Sample Data. You can log them in console to see if they work. See 'SampleData.java'
+
+4. Create a Notes [Adapter](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.Adapter) that determines UI for each note in the recyclerview
 
 Notes:
 - [DataBinding for nested views](https://medium.com/androiddevelopers/android-data-binding-that-include-thing-1c8791dd6038#.lmx38b8gs)
