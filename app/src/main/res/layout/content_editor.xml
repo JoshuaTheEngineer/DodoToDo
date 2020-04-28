@@ -8,10 +8,14 @@
     tools:context=".EditorActivity"
     tools:showIn="@layout/activity_editor">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <!-- need an edit text to edit the notes -->
+    <EditText
+        android:id="@+id/note_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:hint="@string/enter_note"
+        android:text="@string/large_text"
+        android:inputType="textMultiLine|textCapSentences"/>
 
 </androidx.core.widget.NestedScrollView>

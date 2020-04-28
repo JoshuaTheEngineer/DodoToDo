@@ -33,5 +33,7 @@ View Tag ***v1.0.0-Setup***
 
 4. Create a Notes [Adapter](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.Adapter) that determines UI for each note in the recyclerview
 
+5. Add an Editor Activity, I used a Scrolling Activity to be later used for editing notes
+
 Notes:
 - [DataBinding for nested views](https://medium.com/androiddevelopers/android-data-binding-that-include-thing-1c8791dd6038#.lmx38b8gs)

@@ -1,5 +1,6 @@
 package com.joshuatheengineer.dodotodo;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -48,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                // navigate to Editor Activity
+                Intent intent = new Intent(getApplicationContext(), EditorActivity.class);
+                startActivity(intent);
             }
         });
 
