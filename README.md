@@ -45,4 +45,4 @@ View Tag ***v1.0.0-Setup***
 
     - Since SQLite doesn't support Date as type, you need to create a [type converter](https://developer.android.com/reference/androidx/room/TypeConverters). See **DateConverter.java**
 
-2. Add tests for [Android JUnit 4](https://developer.android.com/training/testing/junit-runner)
+2. Add database tests via [Android JUnit 4](https://developer.android.com/training/testing/junit-runner)

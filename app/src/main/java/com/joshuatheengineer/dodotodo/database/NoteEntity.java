@@ -8,17 +8,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 
-// define name of table
 @Entity(tableName = "notes")
 public class NoteEntity {
-    // autogenerates key for each new row
     @PrimaryKey(autoGenerate = true)
     private int id;
     private Date date;
     private String text;
 
-    // since Room works with only one constructor
-    // we want to remove the one that's missing important fields
     @Ignore
     public NoteEntity() { }
 

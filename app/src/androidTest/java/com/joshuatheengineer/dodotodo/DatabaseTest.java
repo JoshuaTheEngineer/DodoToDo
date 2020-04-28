@@ -20,10 +20,6 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 
-/**
- * Android JUnit
- * https://developer.android.com/training/testing/junit-runner
- */
 @RunWith(AndroidJUnit4.class)
 public class DatabaseTest {
     public static final String TAG = "Junit";
