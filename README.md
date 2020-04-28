@@ -22,3 +22,6 @@ View Tag ***v1.0.0-Setup***
     - Optional. Use ButterKnife. In "File > Project Structure > Dependencies > App", click the add button to include latest versions of
         i. jakewharton:butterknife
         ii. jakewharton:butterknife-compiler (added as annotationProcessor)
+
+Notes:
+- [DataBinding for nested views](https://medium.com/androiddevelopers/android-data-binding-that-include-thing-1c8791dd6038#.lmx38b8gs)

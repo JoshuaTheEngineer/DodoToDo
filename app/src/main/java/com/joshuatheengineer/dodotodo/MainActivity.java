@@ -9,6 +9,7 @@ import com.joshuatheengineer.dodotodo.databinding.ActivityMainBinding;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.View;
 import android.view.Menu;
@@ -27,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
         // sets DataBinding to the content view
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        // Method to initialize Recyclerview
+        initRecyclerView();
+
         // example of using DataBinding with the fab btn
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +40,18 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    /**
+     * Intializes RecyclerView
+     */
+    private void initRecyclerView() {
+        // Create a layout manager to determine how recycler view's laid out
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+        // 'setHasFixedSize' prevents rows resizing
+        binding.contentmain.recyclerView.setHasFixedSize(true);
+        binding.contentmain.recyclerView.setLayoutManager(layoutManager);
     }
 
     @Override
