@@ -9,12 +9,6 @@ public class NoteEntity {
     private Date date;
     private String text;
 
-    /**
-     * For different scenarios
-     *
-     * For example, adding with all data
-     * Or adding when id is auto-generated
-     */
     public NoteEntity() { }
 
     public NoteEntity(Date date, String text) {

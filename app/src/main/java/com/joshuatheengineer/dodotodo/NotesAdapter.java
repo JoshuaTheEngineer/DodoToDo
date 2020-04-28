@@ -20,14 +20,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     private final List<NoteEntity> mNotes;
     private final Context mContext;
 
-    // the NotesAdapter is initialized with the Notes data
-    // and context of where it's used
     public NotesAdapter(List<NoteEntity> mNotes, Context mContext) {
         this.mNotes = mNotes;
         this.mContext = mContext;
     }
 
-    // Creates ViewHolder for each Note
     @NonNull
     @Override
     public NotesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,7 +33,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         return new ViewHolder(view);
     }
 
-    // Binds Viewholder to text from UI item. So any changes will affect
     @Override
     public void onBindViewHolder(@NonNull NotesAdapter.ViewHolder holder, int position) {
         final NoteEntity note = mNotes.get(position);
@@ -54,7 +50,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            // binds the textview
             binding = DataBindingUtil.bind(itemView);
             mTextView = binding.textView;
         }

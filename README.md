@@ -27,7 +27,7 @@ View Tag ***v1.0.0-Setup***
 
 2. Create a custom note item view. See **note_list_item.xml**
 
-3. Create a data transfer object with propper Getters, Setters, and Constructors. See **NoteEntity.java** as an example
+3. Create a data transfer object with proper Getters, Setters, and Constructors. See **NoteEntity.java** as an example
 
     - To test it, we need to create Sample Data. You can log them in console to see if they work. See 'SampleData.java'
 
@@ -35,5 +35,8 @@ View Tag ***v1.0.0-Setup***
 
 5. Add an Editor Activity, I used a Scrolling Activity to be later used for editing notes
 
-Notes:
+### Notes:
 - [DataBinding for nested views](https://medium.com/androiddevelopers/android-data-binding-that-include-thing-1c8791dd6038#.lmx38b8gs)
+    - Additional Helpful notes from [StackOverflow](https://stackoverflow.com/questions/34636934/android-data-binding-setsupportactionbar)
+
+## Step 3: Data Layer

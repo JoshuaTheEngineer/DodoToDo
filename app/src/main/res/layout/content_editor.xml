@@ -8,7 +8,6 @@
     tools:context=".EditorActivity"
     tools:showIn="@layout/activity_editor">
 
-    <!-- need an edit text to edit the notes -->
     <EditText
         android:id="@+id/note_text"
         android:layout_width="match_parent"
