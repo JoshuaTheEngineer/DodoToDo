@@ -23,11 +23,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         // sets DataBinding to the content view
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        // the order matters, bind first then add toolbar binding
+        // https://stackoverflow.com/questions/34636934/android-data-binding-setsupportactionbar
+        setSupportActionBar(binding.toolbar);
+
 
         // Method to initialize Recyclerview
         initRecyclerView();
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Intializes RecyclerView
+     * Initializes RecyclerView
      */
     private void initRecyclerView() {
         // Create a layout manager to determine how recycler view's laid out
