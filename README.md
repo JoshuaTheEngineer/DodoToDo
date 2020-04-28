@@ -40,3 +40,9 @@ View Tag ***v1.0.0-Setup***
     - Additional Helpful notes from [StackOverflow](https://stackoverflow.com/questions/34636934/android-data-binding-setsupportactionbar)
 
 ## Step 3: Data Layer
+
+1. Add an Entity, DAO, and Database via [Room implementation](https://developer.android.com/reference/androidx/room/package-summary)
+
+    - Since SQLite doesn't support Date as type, you need to create a [type converter](https://developer.android.com/reference/androidx/room/TypeConverters). See **DateConverter.java**
+
+2. Add tests for [Android JUnit 4](https://developer.android.com/training/testing/junit-runner)
