@@ -1,6 +1,7 @@
 package com.joshuatheengineer.dodotodo.viewmodel;
 
 import android.app.Application;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -9,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.joshuatheengineer.dodotodo.database.AppRepository;
 import com.joshuatheengineer.dodotodo.database.NoteEntity;
 
+import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -43,6 +45,12 @@ public class EditorViewModel extends AndroidViewModel {
         NoteEntity note = mLiveNote.getValue();
         if (note == null) {
             // new note
+            // if empty, end add note action
+            if (TextUtils.isEmpty(noteText.trim())) {
+                return;
+            }
+            // else, creates new note (shouldn't be just spaces)
+            note = new NoteEntity(new Date(), noteText.trim());
         } else {
             // existing note
             note.setText(noteText);

@@ -65,3 +65,5 @@ Visit Tag ***v3.0.0-DataLayer***
     - delete all notes
 
 4. Using Bundle and each note item's FAB btn to configure saving each Edit note.
+
+5. Use above configuration with Bundle and Fab button to add a note.
