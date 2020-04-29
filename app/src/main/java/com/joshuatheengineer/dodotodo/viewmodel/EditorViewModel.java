@@ -42,14 +42,17 @@ public class EditorViewModel extends AndroidViewModel {
      * @param noteText
      */
     public void saveNote(String noteText) {
+        // if empty, end add/edit note action
+        if (TextUtils.isEmpty(noteText.trim())) {
+            return;
+        }
+
+        // else set new text
         NoteEntity note = mLiveNote.getValue();
         if (note == null) {
             // new note
-            // if empty, end add note action
-            if (TextUtils.isEmpty(noteText.trim())) {
-                return;
-            }
-            // else, creates new note (shouldn't be just spaces)
+
+            // creates new note (shouldn't be just spaces)
             note = new NoteEntity(new Date(), noteText.trim());
         } else {
             // existing note
