@@ -63,3 +63,5 @@ Visit Tag ***v3.0.0-DataLayer***
 3. Via this relationship, Activity -> ViewModel -> Repository
     - it can add sample data
     - delete all notes
+
+4. Using Bundle and each note item's FAB btn to configure saving each Edit note.

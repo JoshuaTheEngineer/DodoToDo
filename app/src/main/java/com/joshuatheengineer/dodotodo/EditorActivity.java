@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.view.MenuItem;
 import android.view.View;
 
 import static com.joshuatheengineer.dodotodo.utilities.Constants.NOTE_ID_KEY;
@@ -30,6 +31,7 @@ public class EditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_editor);
         setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_check);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initViewModel();
@@ -57,5 +59,37 @@ public class EditorActivity extends AppCompatActivity {
             int noteId = extras.getInt(NOTE_ID_KEY);
             mViewModel.loadData(noteId);
         }
+    }
+
+    /**
+     * When user selects home button or the check mark, it saves the data then returns
+     * to note list activity
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            saveAndReturn();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * If user clicks Android's back button, it saves the note and returns to Note screen
+     */
+    @Override
+    public void onBackPressed() {
+        saveAndReturn();
+    }
+
+    /**
+     * closes the current activity and return to Notes list
+     */
+    private void saveAndReturn() {
+        mViewModel.saveNote(binding.contentEditor.noteText.getText().toString());
+        finish();
     }
 }

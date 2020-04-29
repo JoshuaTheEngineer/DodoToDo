@@ -34,4 +34,19 @@ public class EditorViewModel extends AndroidViewModel {
             }
         });
     }
+
+    /**
+     * Saves note whether new or edited
+     * @param noteText
+     */
+    public void saveNote(String noteText) {
+        NoteEntity note = mLiveNote.getValue();
+        if (note == null) {
+            // new note
+        } else {
+            // existing note
+            note.setText(noteText);
+        }
+        mRepository.insertNote(note);
+    }
 }
