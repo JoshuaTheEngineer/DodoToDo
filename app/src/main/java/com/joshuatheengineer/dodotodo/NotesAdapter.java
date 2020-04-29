@@ -1,6 +1,8 @@
 package com.joshuatheengineer.dodotodo;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.joshuatheengineer.dodotodo.database.NoteEntity;
 import com.joshuatheengineer.dodotodo.databinding.NoteListItemBinding;
 
 import java.util.List;
+
+import static com.joshuatheengineer.dodotodo.utilities.Constants.NOTE_ID_KEY;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
@@ -37,6 +42,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull NotesAdapter.ViewHolder holder, int position) {
         final NoteEntity note = mNotes.get(position);
         holder.mTextView.setText(note.getText());
+
+        // binds the fab to go toEditor view
+        holder.mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("FAB", "Navigate to editor");
+                Intent intent = new Intent(mContext, EditorActivity.class);
+                // stores the note to access via ID
+                intent.putExtra(NOTE_ID_KEY, note.getId());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -47,11 +64,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         NoteListItemBinding binding;
         TextView mTextView;
+        FloatingActionButton mFab;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             binding = DataBindingUtil.bind(itemView);
             mTextView = binding.textView;
+            mFab = binding.fabEdit;
         }
     }
 }

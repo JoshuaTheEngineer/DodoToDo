@@ -69,4 +69,13 @@ public class AppRepository {
             }
         });
     }
+
+    /**
+     *
+     * @param noteId
+     * @return NoteEntity, selected for editing
+     */
+    public NoteEntity getNoteById(int noteId) {
+        return mDb.noteDao().getNoteById(noteId);
+    }
 }
