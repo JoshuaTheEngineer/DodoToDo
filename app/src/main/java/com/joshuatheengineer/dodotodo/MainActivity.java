@@ -3,18 +3,16 @@ package com.joshuatheengineer.dodotodo;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.joshuatheengineer.dodotodo.database.NoteEntity;
 import com.joshuatheengineer.dodotodo.databinding.ActivityMainBinding;
-import com.joshuatheengineer.dodotodo.utilities.SampleData;
+import com.joshuatheengineer.dodotodo.viewmodel.MainViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,13 +26,18 @@ public class MainActivity extends AppCompatActivity {
     private List<NoteEntity> notesData = new ArrayList<>();
     private NotesAdapter mAdapter;
 
+    private MainViewModel mViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setSupportActionBar(binding.toolbar);
 
+        // add view model
         initRecyclerView();
+        initViewModel();
+
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,8 +45,31 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
-        notesData.addAll(SampleData.getNotes());
+    /**
+     * Crates View Model
+     */
+    private void initViewModel() {
+        final Observer<List<NoteEntity>> notesObserver = new Observer<List<NoteEntity>>() {
+            @Override
+            public void onChanged(List<NoteEntity> noteEntities) {
+                notesData.clear();
+                notesData.addAll(noteEntities);
+
+                if( mAdapter == null){
+                    // initializes with data
+                    mAdapter = new NotesAdapter(notesData, MainActivity.this);
+                    binding.contentmain.recyclerView.setAdapter(mAdapter);
+                } else {
+                    // used when data set changes
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        };
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        // will get notes through Publisher-Subscriber model
+        mViewModel.mNotes.observe(this, notesObserver);
     }
 
     private void initRecyclerView() {
@@ -51,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
         binding.contentmain.recyclerView.setHasFixedSize(true);
         binding.contentmain.recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new NotesAdapter(notesData, this);
-        binding.contentmain.recyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -64,10 +88,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add_sample_data) {
+            addSampleData();
+            return true;
+        } else if (id == R.id.action_delete_all) {
+            deleteAllData();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addSampleData() {
+        mViewModel.addSampleData();
+    }
+
+    private void deleteAllData() {
+        mViewModel.deleteAllNotes();
     }
 }

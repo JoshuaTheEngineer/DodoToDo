@@ -19,6 +19,8 @@ View Tag ***v1.0.0-Setup***
 
 ## Step 2: Notes List UI
 
+Visit Tag ***v2.0.0-AddUI***
+
 1. Add a RecyclerView under [DataBinding](https://developer.android.com/topic/libraries/data-binding)
 
     - Optional. Use ButterKnife. In "File > Project Structure > Dependencies > App", click the add button to include latest versions of
@@ -41,8 +43,23 @@ View Tag ***v1.0.0-Setup***
 
 ## Step 3: Data Layer
 
+Visit Tag ***v3.0.0-DataLayer***
+
 1. Add an Entity, DAO, and Database via [Room implementation](https://developer.android.com/reference/androidx/room/package-summary)
 
     - Since SQLite doesn't support Date as type, you need to create a [type converter](https://developer.android.com/reference/androidx/room/TypeConverters). See **DateConverter.java**
 
 2. Add database tests via [Android JUnit 4](https://developer.android.com/training/testing/junit-runner)
+
+## Step 4: Separating Business and Data
+
+1. Add a [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+
+2. Add a Repository which help will direct where data comes from.
+    - MainViewModel will use AppRepository
+    - MainActivity uses MainViewModel
+    - I heard you can view  SQL Lite data with ['DB Browser for SQLite'](https://sqlitebrowser.org/), but I wasn't able to get it working
+
+3. Via this relationship, Activity -> ViewModel -> Repository
+    - it can add sample data
+    - delete all notes

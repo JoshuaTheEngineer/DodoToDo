@@ -23,9 +23,10 @@ public class SampleData {
 
     public static List<NoteEntity> getNotes() {
         List<NoteEntity> notes = new ArrayList<>();
-        notes.add(new NoteEntity(1, getDate(0), SAMPLE_TEXT_1));
-        notes.add(new NoteEntity(2, getDate(-1), SAMPLE_TEXT_2));
-        notes.add(new NoteEntity(3, getDate(-2), SAMPLE_TEXT_3));
+        // since Primary IDs are auto-generated, it's removed
+        notes.add(new NoteEntity( getDate(0), SAMPLE_TEXT_1));
+        notes.add(new NoteEntity( getDate(-1), SAMPLE_TEXT_2));
+        notes.add(new NoteEntity( getDate(-2), SAMPLE_TEXT_3));
         return notes;
     }
 }
