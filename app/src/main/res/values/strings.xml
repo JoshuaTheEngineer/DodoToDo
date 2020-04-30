@@ -14,6 +14,8 @@
     <string name="enter_note">Enter Note</string>
     <string name="delete_all">Delete All Notes</string>
     <string name="new_note">New Note</string>
-    <string name="edit_note">Edit note</string>
+    <string name="edit_note">Edit Note</string>
     <string name="delete">Delete</string>
+    <string name="enter_name_of_note">Enter the name of the note</string>
+    <string name="enter_type_of_units">Enter the units metrics\nExample: minutes, units, etc.</string>
 </resources>

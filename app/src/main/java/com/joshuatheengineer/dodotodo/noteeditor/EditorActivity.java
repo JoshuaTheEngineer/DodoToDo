@@ -55,6 +55,22 @@ public class EditorActivity extends AppCompatActivity {
             @Override
             public void onChanged(NoteEntity noteEntity) {
                 if(noteEntity != null && !mEditing) {
+                    // transfer note name
+                    binding.contentEditor.noteName.setText(noteEntity.getName());
+
+                    // transfer note status
+                    binding.contentEditor.noteStatus.setChecked(noteEntity.getStatus().equals(1));
+
+                    // transfer note units
+                    binding.contentEditor.noteTypeOfUnits.setText(noteEntity.getTypeofunits());
+
+                    // transfer note num of units
+                    binding.contentEditor.contentEditNumUnits.tvUnits.setText(noteEntity.getNumofunits().toString());
+
+                    // transfer note goal
+                    binding.contentEditor.contentEditGoalUnits.tvGoalUnits.setText(noteEntity.getGoalofunits().toString());
+
+                    // transfer note text
                     binding.contentEditor.noteText.setText(noteEntity.getText());
                 }
             }
@@ -98,7 +114,12 @@ public class EditorActivity extends AppCompatActivity {
     }
 
     private void saveAndReturn() {
-        mViewModel.saveNote(binding.contentEditor.noteText.getText().toString());
+        mViewModel.saveNote(binding.contentEditor.noteText.getText().toString(),
+                binding.contentEditor.noteName.getText().toString(),
+                binding.contentEditor.noteStatus.isChecked(),
+                Integer.parseInt(binding.contentEditor.contentEditNumUnits.tvUnits.getText().toString()),
+                Integer.parseInt(binding.contentEditor.contentEditGoalUnits.tvGoalUnits.getText().toString()),
+                binding.contentEditor.noteTypeOfUnits.getText().toString());
         finish();
     }
 }

@@ -71,4 +71,13 @@ public class AppRepository {
             }
         });
     }
+
+    /**
+     * Get notes based off completion
+     * 0 is to do
+     * 1 is complete
+     */
+    public LiveData<List<NoteEntity>> getNotesByStatus(int status) {
+        return mDb.noteDao().getNotesByStatus(status);
+    }
 }

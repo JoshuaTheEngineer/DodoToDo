@@ -33,4 +33,11 @@ public interface NoteDao {
     @Query("SELECT COUNT(*) FROM notes")
     int getCount();
 
+    /**
+     * Gets notes based off status
+     * @param status
+     * @return list of notes
+     */
+    @Query("SELECT * FROM notes WHERE status =:status")
+    LiveData<List<NoteEntity>> getNotesByStatus(int status);
 }

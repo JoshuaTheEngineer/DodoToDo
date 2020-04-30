@@ -21,12 +21,13 @@ public class SampleData {
         return cal.getTime();
     }
 
+    // public NoteEntity(Date date, String text, String name, int status, int numofunits, int goalofunits, String typeofunits)
     public static List<NoteEntity> getNotes() {
         List<NoteEntity> notes = new ArrayList<>();
         // since Primary IDs are auto-generated, it's removed
-        notes.add(new NoteEntity( getDate(0), SAMPLE_TEXT_1));
-        notes.add(new NoteEntity( getDate(-1), SAMPLE_TEXT_2));
-        notes.add(new NoteEntity( getDate(-2), SAMPLE_TEXT_3));
+        notes.add(new NoteEntity( getDate(0), SAMPLE_TEXT_1, "Note 1", 0, 3, 4, "Minutes"));
+        notes.add(new NoteEntity( getDate(-1), SAMPLE_TEXT_2, "Note 2", 0, 7, 8, "Minutes"));
+        notes.add(new NoteEntity( getDate(-2), SAMPLE_TEXT_3, "Note 3", 0, 6, 9, "Minutes"));
         return notes;
     }
 }

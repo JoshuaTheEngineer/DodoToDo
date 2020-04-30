@@ -2,7 +2,7 @@
 
 ![Dodo To-Do Image](resources/graphics/dodo_todo_logo.png)
 
-Based off this LinkedInLearning course [Building an Android App With Architecture Compoennts](https://www.linkedin.com/learning/building-an-android-app-with-architecture-components/)
+Based off this LinkedInLearning course [Building an Android App With Architecture Components](https://www.linkedin.com/learning/building-an-android-app-with-architecture-components/)
 
 [Design Patterns](https://www.quora.com/What-are-some-common-design-patterns-in-Android-development)
 
@@ -94,3 +94,17 @@ Visit Tag ***v5.2.0-onSavedInstanceState***
 ### Note: Some refactoring
 - added recyclerview divider lines. Visit Tag ***v5.2.1-dividerLines***
 - moved some directories. Visit Tag ***v5.2.2-moveDirectories***
+
+## Step 6: Upgrade Database to include more parameters
+- For upgrading / updating your Database, use [Migrations](https://developer.android.com/training/data-storage/room/migrating-db-versions)
+- After migrating, update your Add / Edit Note feature to save all the new params in note
+    - I updated the constraints so that 'note text' can be empty, because some users don't care about the details
+
+### Note: Great Resources for Database migration and Switch UI
+- [Android Developers: Migrating DB Versions](https://developer.android.com/training/data-storage/room/migrating-db-versions)
+- [Understanding migrations with Room](https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929) by Florina Muntenescu
+- [StackOverflow: Adding multiple columns to SQLite table](https://stackoverflow.com/questions/6172815/sqlite-alter-table-add-multiple-columns-in-a-single-statement)
+- [StackOverflow: Dealing with nonNull issues](https://stackoverflow.com/questions/52764507/room-how-to-set-fields-notnull-value-is-false)
+- [StackOverflow: Migration couldn't handle AND Setting Default values](https://stackoverflow.com/questions/52274366/android-room-migration-didnt-properly-handle-wrong-columns-order)
+- [Switch Tutorial with Android Studio](https://abhiandroid.com/ui/switch)
+- [StackOverflow: Adding Multiple Views to ScrollView](https://stackoverflow.com/questions/9660328/is-it-impossible-to-add-multiple-views-to-a-scrollview)

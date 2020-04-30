@@ -1,21 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".noteeditor.EditorActivity"
         tools:showIn="@layout/activity_editor">
 
-        <EditText
-            android:id="@+id/note_text"
+        <!-- TODO: Add auto-correct, suggestions -->
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/text_margin"
-            android:hint="@string/enter_note"
-            android:inputType="textMultiLine|textCapSentences"/>
+            android:orientation="vertical">
+            <!-- Name -->
+            <EditText
+                android:id="@+id/note_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:hint="@string/enter_name_of_note"
+                android:inputType="text"/>
+
+            <!-- Status -->
+            <Switch
+                android:id="@+id/note_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:showText="true"
+                android:textOff="To Do"
+                android:textOn="Complete"
+                android:text="Completion Status" />
+
+            <!-- Type of Units -->
+            <EditText
+                android:id="@+id/note_type_of_units"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/text_margin"
+                android:hint="@string/enter_type_of_units"
+                android:inputType="textMultiLine|textCapSentences"/>
+
+            <!-- Number of Units feature -->
+            <include
+                android:id="@+id/content_edit_num_units"
+                layout="@layout/content_editor_num_units_item" />
+
+            <!--  Goal Number of Units feature -->
+            <include
+                android:id="@+id/content_edit_goal_units"
+                layout="@layout/content_editor_goal_units_item" />
+
+            <EditText
+                android:id="@+id/note_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/text_margin"
+                android:hint="@string/enter_note"
+                android:inputType="textMultiLine|textCapSentences"/>
+        </LinearLayout>
+
 
     </androidx.core.widget.NestedScrollView>
 </layout>

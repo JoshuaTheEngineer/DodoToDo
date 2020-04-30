@@ -36,16 +36,37 @@ public class EditorViewModel extends AndroidViewModel {
         });
     }
 
-    public void saveNote(String noteText) {
-        if (!TextUtils.isEmpty(noteText.trim())) {
+    /**
+     * Update what will be saved in note
+     */
+    public void saveNote(String noteText, String name, boolean status, int numofunits, int goalofunits, String typeofunits) {
+        // 'checkForNonEmptyFields' won't save note if empty text (except for 'note text')
+        if (checkForNonEmptyFields(name, typeofunits)) {
             NoteEntity note = mLiveNote.getValue();
+            int completionstatus = status ? 1 : 0; // 0 is false, 1 is true
             if (note == null) {
-                note = new NoteEntity(new Date(), noteText.trim());
+                note = new NoteEntity(new Date(), noteText.trim(), name, completionstatus, numofunits, goalofunits, typeofunits);
             } else {
                 note.setText(noteText);
+                note.setName(name);
+                note.setStatus(completionstatus);
+                note.setNumofunits(numofunits);
+                note.setGoalofunits(goalofunits);
+                note.setTypeofunits(typeofunits);
             }
             mRepository.insertNote(note);
         }
+    }
+
+    /**
+     * If one of the below params are empty, return false
+     * @param name
+     * @param typeofunits
+     * @return
+     */
+    private boolean checkForNonEmptyFields(String name, String typeofunits){
+        return !TextUtils.isEmpty(name.trim()) &&
+                !TextUtils.isEmpty(typeofunits.trim());
     }
 
     public void deleteNote() {

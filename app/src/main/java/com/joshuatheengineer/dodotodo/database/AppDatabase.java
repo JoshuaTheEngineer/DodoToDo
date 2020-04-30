@@ -7,7 +7,10 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {NoteEntity.class}, version=1)
+import static com.joshuatheengineer.dodotodo.database.AppDbMigration.MIGRATION_1_2;
+
+// upgrade db version to allow migration
+@Database(entities = {NoteEntity.class}, version=2)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -23,7 +26,8 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (instance == null) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class,
-                            DATABASE_NAME).build();
+                            DATABASE_NAME)
+                            .addMigrations(MIGRATION_1_2).build(); // add migrations due to new database design
                 }
             }
         }

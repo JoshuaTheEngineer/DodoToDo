@@ -42,7 +42,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull NotesAdapter.ViewHolder holder, int position) {
         final NoteEntity note = mNotes.get(position);
-        holder.mTextView.setText(note.getText());
+
+        // display notes by name instead of text
+        holder.mTextView.setText(note.getName());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +55,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             }
         });
     }
+
+    // TODO: Implement incrementing feature
 
     @Override
     public int getItemCount() {
