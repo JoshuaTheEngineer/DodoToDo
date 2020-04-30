@@ -73,3 +73,7 @@ Visit Tag ***v5.1.0-deleteNoteFeature*** for substep 6.
 5. Use above configuration with Bundle and Fab button to add a note.
 
 6. To delete a note, it's a similar process except you use DAO's deleteNote method
+
+## Step 5: Use onSaveInstanceState for Device orientation immunity
+
+1. Use a boolean flag based on 'onSaveInstanceState' so it won't override current note edits. See 'EditorActivity.java'

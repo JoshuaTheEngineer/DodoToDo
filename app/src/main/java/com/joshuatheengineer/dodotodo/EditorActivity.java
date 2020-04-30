@@ -8,17 +8,20 @@ import com.joshuatheengineer.dodotodo.database.NoteEntity;
 import com.joshuatheengineer.dodotodo.databinding.ActivityEditorBinding;
 import com.joshuatheengineer.dodotodo.viewmodel.EditorViewModel;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import static com.joshuatheengineer.dodotodo.utilities.Constants.EDITING_KEY;
 import static com.joshuatheengineer.dodotodo.utilities.Constants.NOTE_ID_KEY;
 
 public class EditorActivity extends AppCompatActivity {
@@ -26,7 +29,7 @@ public class EditorActivity extends AppCompatActivity {
     private EditorViewModel mViewModel;
     private ActivityEditorBinding binding;
 
-    private boolean mNewNote;
+    private boolean mNewNote, mEditing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,23 @@ public class EditorActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_check);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // if theres a saved instance, such as after an orientation change
+        // then it flags it
+        if (savedInstanceState != null) {
+            mEditing = savedInstanceState.getBoolean(EDITING_KEY);
+        }
+
         initViewModel();
+    }
+
+    /**
+     * called when device changes state
+     * @param outState
+     */
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putBoolean(EDITING_KEY, true);
+        super.onSaveInstanceState(outState);
     }
 
     private void initViewModel() {
@@ -44,7 +63,8 @@ public class EditorActivity extends AppCompatActivity {
         mViewModel.mLiveNote.observe(this, new Observer<NoteEntity>() {
             @Override
             public void onChanged(NoteEntity noteEntity) {
-                if(noteEntity != null) {
+                // if you're already editing the node, it won't override the changes
+                if(noteEntity != null && !mEditing) {
                     binding.contentEditor.noteText.setText(noteEntity.getText());
                 }
             }
@@ -82,7 +102,7 @@ public class EditorActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-     @Override
+    @Override
     public void onBackPressed() {
         saveAndReturn();
     }
