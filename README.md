@@ -1,6 +1,13 @@
 # DodoToDo
 
-Based off this [LinkedInLearning](https://www.linkedin.com/learning/building-an-android-app-with-architecture-components/)
+Based off this LinkedInLearning course [Building an Android App With Architecture Compoennts](https://www.linkedin.com/learning/building-an-android-app-with-architecture-components/)
+
+[Design Patterns](https://www.quora.com/What-are-some-common-design-patterns-in-Android-development)
+
+Concepts:
+- Publisher-Subscriber Model
+- Model-View-Viewmodel (MVVM)
+- Repository Pattern
 
 ## Step 1: Setup
 
@@ -84,4 +91,4 @@ Visit Tag ***v5.2.0-onSavedInstanceState***
 
 ### Note: Some refactoring
 - added recyclerview divider lines. Visit Tag ***v5.2.1-dividerLines***
-- moved some directories. Visit Tag ***5.2.2-moveDirectories***
+- moved some directories. Visit Tag ***v5.2.2-moveDirectories***
