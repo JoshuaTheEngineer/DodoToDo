@@ -54,7 +54,9 @@ Visit Tag ***v3.0.0-DataLayer***
 ## Step 4: Separating Business and Data
 
 Visit Tag ***v4.0.0-businessLogic*** for substeps 1 to 3.
+
 Visit Tag ***v5.0.0-addEditFeature*** for substeps 4 and 5.
+
 Visit Tag ***v5.1.0-deleteNoteFeature*** for substep 6.
 
 1. Add a [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
@@ -76,4 +78,8 @@ Visit Tag ***v5.1.0-deleteNoteFeature*** for substep 6.
 
 ## Step 5: Use onSaveInstanceState for Device orientation immunity
 
+Visit Tag ***v5.2.0-onSavedInstanceState***
+
 1. Use a boolean flag based on 'onSaveInstanceState' so it won't override current note edits. See 'EditorActivity.java'
+
+Note: Some refactoring, added recyclerview divider lines.

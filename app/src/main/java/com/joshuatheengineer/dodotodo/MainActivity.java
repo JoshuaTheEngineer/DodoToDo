@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.View;
@@ -72,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
         binding.contentmain.recyclerView.setHasFixedSize(true);
         binding.contentmain.recyclerView.setLayoutManager(layoutManager);
 
+        // Added divider lines to recycler view
+        DividerItemDecoration divider = new DividerItemDecoration(
+                binding.contentmain.recyclerView.getContext(),
+                layoutManager.getOrientation());
+        binding.contentmain.recyclerView.addItemDecoration(divider);
     }
 
     @Override

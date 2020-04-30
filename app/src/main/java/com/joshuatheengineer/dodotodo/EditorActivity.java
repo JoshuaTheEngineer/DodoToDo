@@ -48,10 +48,6 @@ public class EditorActivity extends AppCompatActivity {
         initViewModel();
     }
 
-    /**
-     * called when device changes state
-     * @param outState
-     */
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putBoolean(EDITING_KEY, true);
@@ -63,7 +59,6 @@ public class EditorActivity extends AppCompatActivity {
         mViewModel.mLiveNote.observe(this, new Observer<NoteEntity>() {
             @Override
             public void onChanged(NoteEntity noteEntity) {
-                // if you're already editing the node, it won't override the changes
                 if(noteEntity != null && !mEditing) {
                     binding.contentEditor.noteText.setText(noteEntity.getText());
                 }
