@@ -1,5 +1,7 @@
 # DodoToDo
 
+![Dodo To-Do Image](resources/graphics/dodo_todo_logo.png)
+
 Based off this LinkedInLearning course [Building an Android App With Architecture Compoennts](https://www.linkedin.com/learning/building-an-android-app-with-architecture-components/)
 
 [Design Patterns](https://www.quora.com/What-are-some-common-design-patterns-in-Android-development)
