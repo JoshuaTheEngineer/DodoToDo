@@ -48,9 +48,6 @@ public class EditorViewModel extends AndroidViewModel {
         }
     }
 
-    /**
-     * deletes with repository method
-     */
     public void deleteNote() {
         mRepository.deleteNote(mLiveNote.getValue());
     }

@@ -43,13 +43,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         final NoteEntity note = mNotes.get(position);
         holder.mTextView.setText(note.getText());
 
-        // binds the fab to go toEditor view
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("FAB", "Navigate to editor");
                 Intent intent = new Intent(mContext, EditorActivity.class);
-                // stores the note to access via ID
                 intent.putExtra(NOTE_ID_KEY, note.getId());
                 mContext.startActivity(intent);
             }

@@ -50,10 +50,8 @@ public class EditorActivity extends AppCompatActivity {
             }
         });
 
-        // Loads Editor View model for selected Note
         Bundle extras = getIntent().getExtras();
         if (extras == null){
-            // changes title of activity
             setTitle(getString(R.string.new_note));
             mNewNote = true;
         } else {
@@ -65,7 +63,6 @@ public class EditorActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // will only display Delete button if you're editing an existing note
         if (!mNewNote) {
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.menu_editor, menu);

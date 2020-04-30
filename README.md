@@ -53,6 +53,10 @@ Visit Tag ***v3.0.0-DataLayer***
 
 ## Step 4: Separating Business and Data
 
+Visit Tag ***v4.0.0-businessLogic*** for substeps 1 to 3.
+Visit Tag ***v5.0.0-addEditFeature*** for substeps 4 and 5.
+Visit Tag ***v5.1.0-deleteNoteFeature*** for substep 6.
+
 1. Add a [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 
 2. Add a Repository which help will direct where data comes from.

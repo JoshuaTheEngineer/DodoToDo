@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setSupportActionBar(binding.toolbar);
 
-        // add view model
         initRecyclerView();
         initViewModel();
 
@@ -65,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        // will get notes through Publisher-Subscriber model
         mViewModel.mNotes.observe(this, notesObserver);
     }
 

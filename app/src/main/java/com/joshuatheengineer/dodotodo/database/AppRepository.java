@@ -64,10 +64,6 @@ public class AppRepository {
         });
     }
 
-    /**
-     * Deletes note from database
-     * @param note
-     */
     public void deleteNote(final NoteEntity note) {
         executor.execute(new Runnable() {
             @Override
