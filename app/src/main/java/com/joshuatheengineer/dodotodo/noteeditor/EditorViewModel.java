@@ -1,4 +1,4 @@
-package com.joshuatheengineer.dodotodo.viewmodel;
+package com.joshuatheengineer.dodotodo.noteeditor;
 
 import android.app.Application;
 import android.text.TextUtils;

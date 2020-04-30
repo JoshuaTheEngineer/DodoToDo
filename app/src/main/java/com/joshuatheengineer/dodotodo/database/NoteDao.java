@@ -9,8 +9,6 @@ import androidx.room.Query;
 
 import java.util.List;
 
-// Room will generate methods for Data manipulation
-// based on below annotations
 @Dao
 public interface NoteDao {
 

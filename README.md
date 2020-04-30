@@ -82,4 +82,6 @@ Visit Tag ***v5.2.0-onSavedInstanceState***
 
 1. Use a boolean flag based on 'onSaveInstanceState' so it won't override current note edits. See 'EditorActivity.java'
 
-Note: Some refactoring, added recyclerview divider lines.
+### Note: Some refactoring
+- added recyclerview divider lines. Visit Tag ***v5.2.1-dividerLines***
+- moved some directories. Visit Tag ***5.2.2-moveDirectories***

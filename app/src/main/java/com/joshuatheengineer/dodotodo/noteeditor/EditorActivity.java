@@ -1,25 +1,20 @@
-package com.joshuatheengineer.dodotodo;
+package com.joshuatheengineer.dodotodo.noteeditor;
 
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.joshuatheengineer.dodotodo.R;
 import com.joshuatheengineer.dodotodo.database.NoteEntity;
 import com.joshuatheengineer.dodotodo.databinding.ActivityEditorBinding;
-import com.joshuatheengineer.dodotodo.viewmodel.EditorViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import static com.joshuatheengineer.dodotodo.utilities.Constants.EDITING_KEY;
 import static com.joshuatheengineer.dodotodo.utilities.Constants.NOTE_ID_KEY;

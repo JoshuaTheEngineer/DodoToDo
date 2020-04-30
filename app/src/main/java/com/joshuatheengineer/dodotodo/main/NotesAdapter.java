@@ -1,8 +1,7 @@
-package com.joshuatheengineer.dodotodo;
+package com.joshuatheengineer.dodotodo.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.joshuatheengineer.dodotodo.R;
 import com.joshuatheengineer.dodotodo.database.NoteEntity;
 import com.joshuatheengineer.dodotodo.databinding.NoteListItemBinding;
+import com.joshuatheengineer.dodotodo.noteeditor.EditorActivity;
 
 import java.util.List;
 

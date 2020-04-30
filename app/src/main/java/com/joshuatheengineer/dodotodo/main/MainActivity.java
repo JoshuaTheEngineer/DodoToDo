@@ -1,11 +1,12 @@
-package com.joshuatheengineer.dodotodo;
+package com.joshuatheengineer.dodotodo.main;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.joshuatheengineer.dodotodo.R;
 import com.joshuatheengineer.dodotodo.database.NoteEntity;
 import com.joshuatheengineer.dodotodo.databinding.ActivityMainBinding;
-import com.joshuatheengineer.dodotodo.viewmodel.MainViewModel;
+import com.joshuatheengineer.dodotodo.noteeditor.EditorActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -55,11 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 notesData.addAll(noteEntities);
 
                 if( mAdapter == null){
-                    // initializes with data
                     mAdapter = new NotesAdapter(notesData, MainActivity.this);
                     binding.contentmain.recyclerView.setAdapter(mAdapter);
                 } else {
-                    // used when data set changes
                     mAdapter.notifyDataSetChanged();
                 }
             }
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         binding.contentmain.recyclerView.setHasFixedSize(true);
         binding.contentmain.recyclerView.setLayoutManager(layoutManager);
 
-        // Added divider lines to recycler view
         DividerItemDecoration divider = new DividerItemDecoration(
                 binding.contentmain.recyclerView.getContext(),
                 layoutManager.getOrientation());
