@@ -14,6 +14,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -61,33 +63,33 @@ public class EditorActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * When user selects home button or the check mark, it saves the data then returns
-     * to note list activity
-     *
-     * @param item
-     * @return
-     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // will only display Delete button if you're editing an existing note
+        if (!mNewNote) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_editor, menu);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             saveAndReturn();
             return true;
+        } else if (item.getItemId() == R.id.action_delete) {
+            mViewModel.deleteNote();
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * If user clicks Android's back button, it saves the note and returns to Note screen
-     */
-    @Override
+     @Override
     public void onBackPressed() {
         saveAndReturn();
     }
 
-    /**
-     * closes the current activity and return to Notes list
-     */
     private void saveAndReturn() {
         mViewModel.saveNote(binding.contentEditor.noteText.getText().toString());
         finish();

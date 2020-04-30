@@ -12,9 +12,6 @@ import com.joshuatheengineer.dodotodo.utilities.SampleData;
 
 import java.util.List;
 
-/**
- * ViewModels store and manage UI Related data in the lifecycle
- */
 public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<NoteEntity>> mNotes;
@@ -29,16 +26,10 @@ public class MainViewModel extends AndroidViewModel {
         mNotes = mRepository.mNotes;
     }
 
-    /**
-     * Will add sample data
-     */
     public void addSampleData() {
         mRepository.addSampleData();
     }
 
-    /**
-     * Will delete all data
-     */
     public void deleteAllNotes() {
         mRepository.deleteAllNotes();
     }

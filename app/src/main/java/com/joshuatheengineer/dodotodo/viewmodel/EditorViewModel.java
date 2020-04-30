@@ -31,33 +31,27 @@ public class EditorViewModel extends AndroidViewModel {
             @Override
             public void run() {
                 NoteEntity note = mRepository.getNoteById(noteId);
-                // triggers observer's change data
                 mLiveNote.postValue(note);
             }
         });
     }
 
-    /**
-     * Saves note whether new or edited
-     * @param noteText
-     */
     public void saveNote(String noteText) {
-        // if empty, end add/edit note action
-        if (TextUtils.isEmpty(noteText.trim())) {
-            return;
+        if (!TextUtils.isEmpty(noteText.trim())) {
+            NoteEntity note = mLiveNote.getValue();
+            if (note == null) {
+                note = new NoteEntity(new Date(), noteText.trim());
+            } else {
+                note.setText(noteText);
+            }
+            mRepository.insertNote(note);
         }
+    }
 
-        // else set new text
-        NoteEntity note = mLiveNote.getValue();
-        if (note == null) {
-            // new note
-
-            // creates new note (shouldn't be just spaces)
-            note = new NoteEntity(new Date(), noteText.trim());
-        } else {
-            // existing note
-            note.setText(noteText);
-        }
-        mRepository.insertNote(note);
+    /**
+     * deletes with repository method
+     */
+    public void deleteNote() {
+        mRepository.deleteNote(mLiveNote.getValue());
     }
 }

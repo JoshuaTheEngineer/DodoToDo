@@ -47,9 +47,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Crates View Model
-     */
     private void initViewModel() {
         final Observer<List<NoteEntity>> notesObserver = new Observer<List<NoteEntity>>() {
             @Override

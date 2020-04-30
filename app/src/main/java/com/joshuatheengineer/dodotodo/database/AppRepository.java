@@ -11,24 +11,12 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-/**
- * Repositories are used to decide where the true data source is.
- *
- * Helps when you scale your app and want to include cloud and use local caching.
- */
 public class AppRepository {
-    // change how to send an instance of repo to get database
     private static AppRepository ourInstance;
-
     public LiveData<List<NoteEntity>> mNotes;
-
     private AppDatabase mDb;
+    private Executor executor = Executors.newSingleThreadExecutor();
 
-    // to ensure that database operations run in background thread
-    private Executor executor
-             = Executors.newSingleThreadExecutor();
-
-    // passes the App Repo
     public static AppRepository getInstance(Context context) {
         if (ourInstance == null){
             ourInstance = new AppRepository(context);
@@ -41,7 +29,6 @@ public class AppRepository {
         mNotes = getAllNotes();
     }
 
-    // Adds sample data
     public void addSampleData() {
         executor.execute(new Runnable() {
             @Override
@@ -51,16 +38,10 @@ public class AppRepository {
         });
     }
 
-    /**
-     * GetAllNotes will get the database's notes
-     */
     private LiveData<List<NoteEntity>> getAllNotes() {
         return mDb.noteDao().getAll();
     }
 
-    /**
-     * Since deleteAll returns a primitive type, it should be handled with an executor
-     */
     public void deleteAllNotes() {
         executor.execute(new Runnable() {
             @Override
@@ -70,24 +51,28 @@ public class AppRepository {
         });
     }
 
-    /**
-     *
-     * @param noteId
-     * @return NoteEntity, selected for editing
-     */
     public NoteEntity getNoteById(int noteId) {
         return mDb.noteDao().getNoteById(noteId);
     }
 
-    /**
-     * Inserts note to Database
-     * @param note
-     */
     public void insertNote(final NoteEntity note) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 mDb.noteDao().insertNote(note);
+            }
+        });
+    }
+
+    /**
+     * Deletes note from database
+     * @param note
+     */
+    public void deleteNote(final NoteEntity note) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.noteDao().deleteNote(note);
             }
         });
     }
