@@ -108,3 +108,10 @@ Visit Tag ***v5.2.0-onSavedInstanceState***
 - [StackOverflow: Migration couldn't handle AND Setting Default values](https://stackoverflow.com/questions/52274366/android-room-migration-didnt-properly-handle-wrong-columns-order)
 - [Switch Tutorial with Android Studio](https://abhiandroid.com/ui/switch)
 - [StackOverflow: Adding Multiple Views to ScrollView](https://stackoverflow.com/questions/9660328/is-it-impossible-to-add-multiple-views-to-a-scrollview)
+
+## Step 7: Implement Incrementing and Decrementing features for Editor
+- I used 'Mutable LiveData' to update the UI for incrementing and decrementing those values.
+- There are some rules to keep in mind when implementing these features
+    1. The goal is always more than the current number of units
+    2. The goal has to be at least one or higher.
+    3. The number of units has to be at least zero or higher.

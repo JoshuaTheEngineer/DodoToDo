@@ -17,6 +17,9 @@ import java.util.concurrent.Executors;
 public class EditorViewModel extends AndroidViewModel {
 
     public MutableLiveData<NoteEntity> mLiveNote = new MutableLiveData<>();
+    public MutableLiveData<Integer> mNumUnits = new MutableLiveData<>();
+    public MutableLiveData<Integer> mGoalUnits = new MutableLiveData<>();
+
     private AppRepository mRepository;
 
     private Executor executor = Executors.newSingleThreadExecutor();
@@ -24,6 +27,14 @@ public class EditorViewModel extends AndroidViewModel {
     public EditorViewModel(@NonNull Application application) {
         super(application);
         mRepository = AppRepository.getInstance(getApplication());
+        // initializes with base values for num and goal of units
+        // will change if there's existing note data (for example, when editing)
+        // the null conditionals will ensure it sets these values if you are not
+        // changing orientation
+        if(mNumUnits.getValue() == null || mGoalUnits.getValue() == null) {
+            mNumUnits.postValue(0);
+            mGoalUnits.postValue(1);
+        }
     }
 
     public void loadData(final int noteId) {
@@ -32,6 +43,9 @@ public class EditorViewModel extends AndroidViewModel {
             public void run() {
                 NoteEntity note = mRepository.getNoteById(noteId);
                 mLiveNote.postValue(note);
+                // updates number and goal of units if there's existing note data
+                mNumUnits.postValue(note.getNumofunits());
+                mGoalUnits.postValue(note.getGoalofunits());
             }
         });
     }
@@ -71,5 +85,32 @@ public class EditorViewModel extends AndroidViewModel {
 
     public void deleteNote() {
         mRepository.deleteNote(mLiveNote.getValue());
+    }
+
+    /**
+     * the below methods control the incrementing and decrementing of units
+     */
+    public void incrementUnits() {
+        int numUnits = mNumUnits.getValue();
+        // num units SHOULD NOT increment above the goal
+        if(numUnits < mGoalUnits.getValue()) mNumUnits.postValue(numUnits + 1);
+    }
+
+    public void decrementUnits() {
+        int numUnits = mNumUnits.getValue();
+        // num units SHOULD NOT decrement below 0
+        if(numUnits > 0) mNumUnits.postValue(numUnits - 1);
+    }
+
+    public void incrementGoal() {
+        int goal = mGoalUnits.getValue();
+        mGoalUnits.postValue(mGoalUnits.getValue() + 1);
+    }
+
+    public void decrementGoal() {
+        int goal = mGoalUnits.getValue();
+        // the goal SHOULD NOT decrement below 1, there should be at least one
+        // NOR can it decrement below the current num value
+        if(goal > 1 && goal > mNumUnits.getValue()) mGoalUnits.postValue(goal - 1);
     }
 }

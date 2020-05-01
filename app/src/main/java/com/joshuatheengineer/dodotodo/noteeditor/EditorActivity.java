@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import static com.joshuatheengineer.dodotodo.utilities.Constants.EDITING_KEY;
 import static com.joshuatheengineer.dodotodo.utilities.Constants.NOTE_ID_KEY;
@@ -41,6 +42,7 @@ public class EditorActivity extends AppCompatActivity {
         }
 
         initViewModel();
+        initBtnListeners();
     }
 
     @Override
@@ -76,6 +78,26 @@ public class EditorActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Helpful to listen when buttons increment or decrement
+         * num or goal of units
+         */
+        mViewModel.mNumUnits.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer numUnits) {
+                // transfer note num of units
+                binding.contentEditor.contentEditNumUnits.tvUnits.setText(numUnits.toString());
+            }
+        });
+
+        mViewModel.mGoalUnits.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer goalUnits) {
+                // transfer note goal
+                binding.contentEditor.contentEditGoalUnits.tvGoalUnits.setText(goalUnits.toString());
+            }
+        });
+
         Bundle extras = getIntent().getExtras();
         if (extras == null){
             setTitle(getString(R.string.new_note));
@@ -85,6 +107,36 @@ public class EditorActivity extends AppCompatActivity {
             int noteId = extras.getInt(NOTE_ID_KEY);
             mViewModel.loadData(noteId);
         }
+    }
+
+    /**
+     * Initializes button listeners for incrementing or decrementing
+     */
+    private void initBtnListeners() {
+        binding.contentEditor.contentEditNumUnits.fabIncrementNumUnits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewModel.incrementUnits();
+            }
+        });
+        binding.contentEditor.contentEditNumUnits.fabDecrementNumUnits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewModel.decrementUnits();
+            }
+        });
+        binding.contentEditor.contentEditGoalUnits.fabIncrementGoalUnits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewModel.incrementGoal();
+            }
+        });
+        binding.contentEditor.contentEditGoalUnits.fabDecrementGoalUnits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewModel.decrementGoal();
+            }
+        });
     }
 
     @Override
