@@ -30,6 +30,8 @@ View Tag ***v1.0.0-Setup***
 
 Visit Tag ***v2.0.0-AddUI***
 
+See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v1.0.0-Setup...v2.0.0-AddUI)
+
 1. Add a RecyclerView under [DataBinding](https://developer.android.com/topic/libraries/data-binding)
 
     - Optional. Use ButterKnife. In "File > Project Structure > Dependencies > App", click the add button to include latest versions of
@@ -54,6 +56,8 @@ Visit Tag ***v2.0.0-AddUI***
 
 Visit Tag ***v3.0.0-DataLayer***
 
+See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v2.0.0-AddUI...v3.0.0-DataLayer)
+
 1. Add an Entity, DAO, and Database via [Room implementation](https://developer.android.com/reference/androidx/room/package-summary)
 
     - Since SQLite doesn't support Date as type, you need to create a [type converter](https://developer.android.com/reference/androidx/room/TypeConverters). See **DateConverter.java**
@@ -62,11 +66,11 @@ Visit Tag ***v3.0.0-DataLayer***
 
 ## Step 4: Separating Business and Data
 
-Visit Tag ***v4.0.0-businessLogic*** for substeps 1 to 3.
+Visit Tag ***v4.0.0-businessLogic*** for substeps 1 to 3. See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v3.0.0-DataLayer...v4.0.0-businessLogic)
 
-Visit Tag ***v5.0.0-addEditFeature*** for substeps 4 and 5.
+Visit Tag ***v5.0.0-addEditFeature*** for substeps 4 and 5. See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v4.0.0-businessLogic...v5.0.0-addEditFeature)
 
-Visit Tag ***v5.1.0-deleteNoteFeature*** for substep 6.
+Visit Tag ***v5.1.0-deleteNoteFeature*** for substep 6. See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v5.0.0-addEditFeature...v5.1.0-deleteNoteFeature)
 
 1. Add a [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 
@@ -87,15 +91,19 @@ Visit Tag ***v5.1.0-deleteNoteFeature*** for substep 6.
 
 ## Step 5: Use onSaveInstanceState for Device orientation immunity
 
-Visit Tag ***v5.2.0-onSavedInstanceState***
+Visit Tag ***v5.2.0-onSavedInstanceState***. See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v5.1.0-deleteNoteFeature...v5.2.0-onSavedInstanceState)
 
 1. Use a boolean flag based on 'onSaveInstanceState' so it won't override current note edits. See 'EditorActivity.java'
 
 ### Note: Some refactoring
-- added recyclerview divider lines. Visit Tag ***v5.2.1-dividerLines***
-- moved some directories. Visit Tag ***v5.2.2-moveDirectories***
+- added recyclerview divider lines. Visit Tag ***v5.2.1-dividerLines***. See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v5.2.0-onSavedInstanceState...v5.2.1-dividerLines)
+- moved some directories. Visit Tag ***v5.2.2-moveDirectories***. See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v5.2.1-dividerLines...v5.2.2-moveDirectories)
+- Added a Splash Screen. See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/5.2.2-moveDirectories...v5.3.0-splashScreen)
 
 ## Step 6: Upgrade Database to include more parameters
+
+Visit Tag ***v6.0.0-migrateDb***. See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v5.3.0-splashScreen...v6.0.0-migrateDb)
+
 - For upgrading / updating your Database, use [Migrations](https://developer.android.com/training/data-storage/room/migrating-db-versions)
 - After migrating, update your Add / Edit Note feature to save all the new params in note
     - I updated the constraints so that 'note text' can be empty, because some users don't care about the details
