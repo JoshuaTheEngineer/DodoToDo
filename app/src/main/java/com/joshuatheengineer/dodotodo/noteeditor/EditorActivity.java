@@ -68,10 +68,14 @@ public class EditorActivity extends AppCompatActivity {
 
                     // transfer note num of units
                     binding.contentEditor.contentEditNumUnits.tvUnits.setText(noteEntity.getNumofunits().toString());
-
+                    mViewModel.mNumUnits.postValue(Integer.parseInt(
+                            noteEntity.getNumofunits().toString()
+                    ));
                     // transfer note goal
                     binding.contentEditor.contentEditGoalUnits.tvGoalUnits.setText(noteEntity.getGoalofunits().toString());
-
+                    mViewModel.mGoalUnits.postValue(Integer.parseInt(
+                            noteEntity.getGoalofunits().toString()
+                    ));
                     // transfer note text
                     binding.contentEditor.noteText.setText(noteEntity.getText());
                 }

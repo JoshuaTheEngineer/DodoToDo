@@ -56,8 +56,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         });
     }
 
-    // TODO: Implement incrementing feature
-
     @Override
     public int getItemCount() {
         return mNotes.size();

@@ -43,9 +43,6 @@ public class EditorViewModel extends AndroidViewModel {
             public void run() {
                 NoteEntity note = mRepository.getNoteById(noteId);
                 mLiveNote.postValue(note);
-                // updates number and goal of units if there's existing note data
-                mNumUnits.postValue(note.getNumofunits());
-                mGoalUnits.postValue(note.getGoalofunits());
             }
         });
     }
@@ -104,7 +101,7 @@ public class EditorViewModel extends AndroidViewModel {
 
     public void incrementGoal() {
         int goal = mGoalUnits.getValue();
-        mGoalUnits.postValue(mGoalUnits.getValue() + 1);
+        mGoalUnits.postValue(goal + 1);
     }
 
     public void decrementGoal() {
