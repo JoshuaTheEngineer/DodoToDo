@@ -27,10 +27,6 @@ public class EditorViewModel extends AndroidViewModel {
     public EditorViewModel(@NonNull Application application) {
         super(application);
         mRepository = AppRepository.getInstance(getApplication());
-        // initializes with base values for num and goal of units
-        // will change if there's existing note data (for example, when editing)
-        // the null conditionals will ensure it sets these values if you are not
-        // changing orientation
         if(mNumUnits.getValue() == null || mGoalUnits.getValue() == null) {
             mNumUnits.postValue(0);
             mGoalUnits.postValue(1);
@@ -47,11 +43,7 @@ public class EditorViewModel extends AndroidViewModel {
         });
     }
 
-    /**
-     * Update what will be saved in note
-     */
     public void saveNote(String noteText, String name, boolean status, int numofunits, int goalofunits, String typeofunits) {
-        // 'checkForNonEmptyFields' won't save note if empty text (except for 'note text')
         if (checkForNonEmptyFields(name, typeofunits)) {
             NoteEntity note = mLiveNote.getValue();
             int completionstatus = status ? 1 : 0; // 0 is false, 1 is true
@@ -69,12 +61,6 @@ public class EditorViewModel extends AndroidViewModel {
         }
     }
 
-    /**
-     * If one of the below params are empty, return false
-     * @param name
-     * @param typeofunits
-     * @return
-     */
     private boolean checkForNonEmptyFields(String name, String typeofunits){
         return !TextUtils.isEmpty(name.trim()) &&
                 !TextUtils.isEmpty(typeofunits.trim());
@@ -84,18 +70,13 @@ public class EditorViewModel extends AndroidViewModel {
         mRepository.deleteNote(mLiveNote.getValue());
     }
 
-    /**
-     * the below methods control the incrementing and decrementing of units
-     */
     public void incrementUnits() {
         int numUnits = mNumUnits.getValue();
-        // num units SHOULD NOT increment above the goal
         if(numUnits < mGoalUnits.getValue()) mNumUnits.postValue(numUnits + 1);
     }
 
     public void decrementUnits() {
         int numUnits = mNumUnits.getValue();
-        // num units SHOULD NOT decrement below 0
         if(numUnits > 0) mNumUnits.postValue(numUnits - 1);
     }
 
@@ -106,8 +87,6 @@ public class EditorViewModel extends AndroidViewModel {
 
     public void decrementGoal() {
         int goal = mGoalUnits.getValue();
-        // the goal SHOULD NOT decrement below 1, there should be at least one
-        // NOR can it decrement below the current num value
         if(goal > 1 && goal > mNumUnits.getValue()) mGoalUnits.postValue(goal - 1);
     }
 }

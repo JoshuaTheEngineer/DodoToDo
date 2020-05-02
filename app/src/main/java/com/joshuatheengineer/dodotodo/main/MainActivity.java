@@ -87,8 +87,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_add_sample_data) {
-            addSampleData();
+        if (id == R.id.action_filter_status_todo) {
+            displayToDoData();
+            return true;
+        } else if (id == R.id.action_filter_status_completed) {
+            displayCompletedData();
             return true;
         } else if (id == R.id.action_delete_all) {
             deleteAllData();
@@ -98,8 +101,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void addSampleData() {
-        mViewModel.addSampleData();
+    private void displayToDoData() {
+    }
+
+    private void displayCompletedData() {
     }
 
     private void deleteAllData() {

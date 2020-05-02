@@ -43,6 +43,8 @@ public class DatabaseTest {
         Log.i(TAG, "closeDb");
     }
 
+    /* Removing 'SampleData' ability
+    // TODO: May have to add / fix more functionality to SampleData calss
     @Test
     public void createAndRetrieveNotes() {
         mDao.insertAll(SampleData.getNotes());
@@ -58,4 +60,5 @@ public class DatabaseTest {
         NoteEntity fromDb = mDao.getNoteById(1);
         assertEquals(original.getText(), fromDb.getText());
     }
+     */
 }

@@ -57,39 +57,25 @@ public class EditorActivity extends AppCompatActivity {
             @Override
             public void onChanged(NoteEntity noteEntity) {
                 if(noteEntity != null && !mEditing) {
-                    // transfer note name
                     binding.contentEditor.noteName.setText(noteEntity.getName());
-
-                    // transfer note status
                     binding.contentEditor.noteStatus.setChecked(noteEntity.getStatus().equals(1));
-
-                    // transfer note units
                     binding.contentEditor.noteTypeOfUnits.setText(noteEntity.getTypeofunits());
-
-                    // transfer note num of units
                     binding.contentEditor.contentEditNumUnits.tvUnits.setText(noteEntity.getNumofunits().toString());
                     mViewModel.mNumUnits.postValue(Integer.parseInt(
                             noteEntity.getNumofunits().toString()
                     ));
-                    // transfer note goal
                     binding.contentEditor.contentEditGoalUnits.tvGoalUnits.setText(noteEntity.getGoalofunits().toString());
                     mViewModel.mGoalUnits.postValue(Integer.parseInt(
                             noteEntity.getGoalofunits().toString()
                     ));
-                    // transfer note text
                     binding.contentEditor.noteText.setText(noteEntity.getText());
                 }
             }
         });
 
-        /**
-         * Helpful to listen when buttons increment or decrement
-         * num or goal of units
-         */
         mViewModel.mNumUnits.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer numUnits) {
-                // transfer note num of units
                 binding.contentEditor.contentEditNumUnits.tvUnits.setText(numUnits.toString());
             }
         });
@@ -97,7 +83,6 @@ public class EditorActivity extends AppCompatActivity {
         mViewModel.mGoalUnits.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer goalUnits) {
-                // transfer note goal
                 binding.contentEditor.contentEditGoalUnits.tvGoalUnits.setText(goalUnits.toString());
             }
         });
@@ -113,9 +98,6 @@ public class EditorActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Initializes button listeners for incrementing or decrementing
-     */
     private void initBtnListeners() {
         binding.contentEditor.contentEditNumUnits.fabIncrementNumUnits.setOnClickListener(new View.OnClickListener() {
             @Override
