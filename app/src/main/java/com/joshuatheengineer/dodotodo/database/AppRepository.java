@@ -25,7 +25,8 @@ public class AppRepository {
 
     private AppRepository(Context context) {
         mDb = AppDatabase.getInstance(context);
-        mNotes = getAllNotes();
+        // want to filter 'To Do' first
+        mNotes = getNotesByStatus(0);
     }
 
     public void addSampleData() {

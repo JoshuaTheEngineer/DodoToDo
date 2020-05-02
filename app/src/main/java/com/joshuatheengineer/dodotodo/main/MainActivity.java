@@ -8,6 +8,7 @@ import com.joshuatheengineer.dodotodo.database.NoteEntity;
 import com.joshuatheengineer.dodotodo.databinding.ActivityMainBinding;
 import com.joshuatheengineer.dodotodo.noteeditor.EditorActivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     private MainViewModel mViewModel;
 
+    private boolean filterStatus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,20 @@ public class MainActivity extends AppCompatActivity {
         initRecyclerView();
         initViewModel();
 
+        /**
+         * if a screen orientation change occurs, it will display based off previous filter
+         */
+        filterStatus = false;
+        if(savedInstanceState != null) {
+            filterStatus = savedInstanceState.getBoolean("FilterStatus");
+            Log.i("FILTER", Boolean.toString(filterStatus));
+            if(!filterStatus){
+                displayToDoData();
+            } else {
+                displayCompletedData();
+            }
+        }
+
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,6 +64,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        /**
+         * false - To Do
+         * true - Completed
+         */
+        outState.putBoolean("FilterStatus",  filterStatus);
+        super.onSaveInstanceState(outState);
     }
 
     private void initViewModel() {
@@ -101,10 +129,21 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Below methods will either display
+     * To Do Data
+     * Completed Data
+     */
     private void displayToDoData() {
+        filterStatus = false;
+        mViewModel.getAllToDoNotes();
+        initViewModel();
     }
 
     private void displayCompletedData() {
+        filterStatus = true;
+        mViewModel.getAllCompletedNotes();
+        initViewModel();
     }
 
     private void deleteAllData() {

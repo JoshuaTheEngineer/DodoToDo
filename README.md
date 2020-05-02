@@ -123,3 +123,7 @@ Visit Tag ***v6.0.0-migrateDb***. See changes [here](https://github.com/JoshuaTh
     1. The goal is always more than the current number of units
     2. The goal has to be at least one or higher.
     3. The number of units has to be at least zero or higher.
+
+## Step 8: Implement 'To Do' and 'Completed' List filter
+- Use the SavedInstanceState to remember previous filter for every device configuration change
+- The AppRepository and DAO determines how the filtering is done

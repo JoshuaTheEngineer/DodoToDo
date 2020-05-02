@@ -26,4 +26,17 @@ public class MainViewModel extends AndroidViewModel {
     public void deleteAllNotes() {
         mRepository.deleteAllNotes();
     }
+
+    /**
+     * Methods get notes by filter.
+     * 0 is To Do
+     * 1 is Completed
+     */
+    public void getAllToDoNotes() {
+        mNotes = mRepository.getNotesByStatus(0);
+    }
+
+    public void getAllCompletedNotes() {
+        mNotes = mRepository.getNotesByStatus(1);
+    }
 }
