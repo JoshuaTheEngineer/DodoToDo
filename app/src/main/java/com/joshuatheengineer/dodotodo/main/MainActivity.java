@@ -1,5 +1,6 @@
 package com.joshuatheengineer.dodotodo.main;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import com.joshuatheengineer.dodotodo.databinding.ActivityMainBinding;
 import com.joshuatheengineer.dodotodo.noteeditor.EditorActivity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private NotesAdapter mAdapter;
 
     private MainViewModel mViewModel;
+    private AlertDialog deleteDialog;
 
     private boolean filterStatus;
 
@@ -49,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         filterStatus = false;
         if(savedInstanceState != null) {
             filterStatus = savedInstanceState.getBoolean("FilterStatus");
-            Log.i("FILTER", Boolean.toString(filterStatus));
             if(!filterStatus){
                 displayToDoData();
             } else {
@@ -64,6 +66,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    /**
+     * To prevent Alert Dialog resource leaks
+     * https://stackoverflow.com/questions/11957409/activity-has-leaked-window-com-android-internal-policy-impl-phonewindowdecorvie
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // window leaks
+        if(deleteDialog != null){
+            deleteDialog.dismiss();
+        }
     }
 
     @Override
@@ -135,18 +150,45 @@ public class MainActivity extends AppCompatActivity {
      * Completed Data
      */
     private void displayToDoData() {
+        setTitle("To Do List");
         filterStatus = false;
         mViewModel.getAllToDoNotes();
         initViewModel();
     }
 
     private void displayCompletedData() {
+        setTitle("Completed List");
         filterStatus = true;
         mViewModel.getAllCompletedNotes();
         initViewModel();
     }
 
+    /**
+     * modified so you delete notes on the current filter status displayed
+     */
     private void deleteAllData() {
-        mViewModel.deleteAllNotes();
+        String filterStr = filterStatus ? "Completed" : "To Do";
+        /**
+         * Preventive measures in case the user wants to delete the note
+         * Great resource on Alert Dialogs
+         * https://stackoverflow.com/questions/2115758/how-do-i-display-an-alert-dialog-on-android
+         */
+        deleteDialog = new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Delete entry")
+                .setMessage("Would you like to delete all "+filterStr+" data?")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+                        if(!filterStatus) mViewModel.deleteAllTodoNotes();
+                        else mViewModel.deleteAllCompletedNotes();
+                    }
+                })
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(R.drawable.ic_delete_error)
+                .show();
     }
 }

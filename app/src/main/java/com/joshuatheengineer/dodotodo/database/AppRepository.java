@@ -74,6 +74,20 @@ public class AppRepository {
     }
 
     /**
+     * Get notes by completion status filter
+     * 0 is to do
+     * 1 is complete
+     */
+    public void deleteNotesByStatus(final int status) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.noteDao().deleteNotesByStatus(status);
+            }
+        });
+    }
+
+    /**
      * Get notes based off completion
      * 0 is to do
      * 1 is complete

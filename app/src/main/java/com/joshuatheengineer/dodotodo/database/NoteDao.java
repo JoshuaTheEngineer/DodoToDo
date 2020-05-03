@@ -27,6 +27,13 @@ public interface NoteDao {
     @Query("SELECT * FROM notes ORDER BY date DESC")
     LiveData<List<NoteEntity>> getAll();
 
+    /**
+     * Delete only certain rows
+     * https://www.tutorialspoint.com/sqlite/sqlite_delete_query.htm
+     */
+    @Query("DELETE FROM notes WHERE status =:status")
+    int deleteNotesByStatus(int status);
+
     @Query("DELETE FROM notes")
     int deleteAll();
 

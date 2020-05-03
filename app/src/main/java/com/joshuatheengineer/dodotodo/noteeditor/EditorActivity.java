@@ -1,5 +1,6 @@
 package com.joshuatheengineer.dodotodo.noteeditor;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.joshuatheengineer.dodotodo.R;
@@ -7,6 +8,7 @@ import com.joshuatheengineer.dodotodo.database.NoteEntity;
 import com.joshuatheengineer.dodotodo.databinding.ActivityEditorBinding;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -24,6 +26,8 @@ public class EditorActivity extends AppCompatActivity {
 
     private EditorViewModel mViewModel;
     private ActivityEditorBinding binding;
+
+    private AlertDialog deleteDialog;
 
     private boolean mNewNote, mEditing;
 
@@ -43,6 +47,15 @@ public class EditorActivity extends AppCompatActivity {
 
         initViewModel();
         initBtnListeners();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // below prevents window leaks
+        if(deleteDialog != null) {
+            deleteDialog.dismiss();
+        }
     }
 
     @Override
@@ -140,8 +153,7 @@ public class EditorActivity extends AppCompatActivity {
             saveAndReturn();
             return true;
         } else if (item.getItemId() == R.id.action_delete) {
-            mViewModel.deleteNote();
-            finish();
+            deleteNoteData();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -159,5 +171,23 @@ public class EditorActivity extends AppCompatActivity {
                 Integer.parseInt(binding.contentEditor.contentEditGoalUnits.tvGoalUnits.getText().toString()),
                 binding.contentEditor.noteTypeOfUnits.getText().toString());
         finish();
+    }
+
+    /**
+     * Preventive measures in case user wants to delete the note
+     */
+    private void deleteNoteData() {
+        deleteDialog = new AlertDialog.Builder(EditorActivity.this)
+                .setTitle("Delete Note Entry")
+                .setMessage("Would you like to delete this note?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        mViewModel.deleteNote();
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(R.drawable.ic_delete_error)
+                .show();
     }
 }

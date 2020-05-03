@@ -124,6 +124,16 @@ Visit Tag ***v6.0.0-migrateDb***. See changes [here](https://github.com/JoshuaTh
     2. The goal has to be at least one or higher.
     3. The number of units has to be at least zero or higher.
 
-## Step 8: Implement 'To Do' and 'Completed' List filter
+## Step 8: Implement 'To Do' and 'Completed' List DISPLAY and DELETE filter
 - Use the SavedInstanceState to remember previous filter for every device configuration change
 - The AppRepository and DAO determines how the filtering is done
+- With filter, delete notes based off completion status and add Alert Dialog
+- Had to create more icons based off filters and error dialog
+    - ic_delete_error.xml
+    - ic_filter_deleteall.xml
+    - ic_filter_todo.xml
+
+### Notes: Great Resources for Alert Dialog
+- [Alert Dialog Example](https://www.concretepage.com/android/android-alertdialog-example-with-theme-icon-and-dialoginterface-onclicklistener)
+- [Stack Overflow: How to display Alert Dialog](https://stackoverflow.com/questions/2115758/how-do-i-display-an-alert-dialog-on-android)
+- [Stack Overflow: How to prevent Dialog leaked windows](https://stackoverflow.com/questions/11957409/activity-has-leaked-window-com-android-internal-policy-impl-phonewindowdecorvie)
