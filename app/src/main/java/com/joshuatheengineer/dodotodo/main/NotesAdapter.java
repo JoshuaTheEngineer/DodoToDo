@@ -43,7 +43,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull NotesAdapter.ViewHolder holder, int position) {
         final NoteEntity note = mNotes.get(position);
 
-        // display notes by name instead of text
         holder.mTextView.setText(note.getName());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {

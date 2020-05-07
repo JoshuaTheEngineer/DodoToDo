@@ -8,6 +8,7 @@ import com.joshuatheengineer.dodotodo.R;
 import com.joshuatheengineer.dodotodo.database.NoteEntity;
 import com.joshuatheengineer.dodotodo.databinding.ActivityMainBinding;
 import com.joshuatheengineer.dodotodo.noteeditor.EditorActivity;
+import com.joshuatheengineer.dodotodo.settings.SettingsActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -46,10 +47,7 @@ public class MainActivity extends AppCompatActivity {
         initRecyclerView();
         initViewModel();
 
-        /**
-         * if a screen orientation change occurs, it will display based off previous filter
-         */
-        filterStatus = false;
+       filterStatus = false;
         if(savedInstanceState != null) {
             filterStatus = savedInstanceState.getBoolean("FilterStatus");
             if(!filterStatus){
@@ -68,10 +66,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * To prevent Alert Dialog resource leaks
-     * https://stackoverflow.com/questions/11957409/activity-has-leaked-window-com-android-internal-policy-impl-phonewindowdecorvie
-     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -83,10 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        /**
-         * false - To Do
-         * true - Completed
-         */
         outState.putBoolean("FilterStatus",  filterStatus);
         super.onSaveInstanceState(outState);
     }
@@ -130,25 +120,32 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_filter_status_todo) {
-            displayToDoData();
-            return true;
-        } else if (id == R.id.action_filter_status_completed) {
-            displayCompletedData();
-            return true;
-        } else if (id == R.id.action_delete_all) {
-            deleteAllData();
-            return true;
-        }
+        switch(id){
+            case R.id.action_filter_status_todo:
+                displayToDoData();
+                return true;
 
-        return super.onOptionsItemSelected(item);
+            case R.id.action_filter_status_completed:
+                displayCompletedData();
+                return true;
+
+            case R.id.action_delete_all:
+                deleteAllData();
+                return true;
+
+            case R.id.action_settings:
+                goToSettings();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
-    /**
-     * Below methods will either display
-     * To Do Data
-     * Completed Data
-     */
+    private void goToSettings() {
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        startActivity(intent);
+    }
+
     private void displayToDoData() {
         setTitle("To Do List");
         filterStatus = false;
@@ -163,30 +160,19 @@ public class MainActivity extends AppCompatActivity {
         initViewModel();
     }
 
-    /**
-     * modified so you delete notes on the current filter status displayed
-     */
     private void deleteAllData() {
         String filterStr = filterStatus ? "Completed" : "To Do";
-        /**
-         * Preventive measures in case the user wants to delete the note
-         * Great resource on Alert Dialogs
-         * https://stackoverflow.com/questions/2115758/how-do-i-display-an-alert-dialog-on-android
-         */
         deleteDialog = new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Delete entry")
                 .setMessage("Would you like to delete all "+filterStr+" data?")
 
-                // Specifying a listener allows you to take an action before dismissing the dialog.
-                // The dialog is automatically dismissed when a dialog button is clicked.
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+               .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // Continue with delete operation
+
                         if(!filterStatus) mViewModel.deleteAllTodoNotes();
                         else mViewModel.deleteAllCompletedNotes();
                     }
                 })
-                // A null listener allows the button to dismiss the dialog and take no further action.
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(R.drawable.ic_delete_error)
                 .show();

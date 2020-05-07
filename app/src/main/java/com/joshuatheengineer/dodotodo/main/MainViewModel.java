@@ -23,11 +23,6 @@ public class MainViewModel extends AndroidViewModel {
         mNotes = mRepository.mNotes;
     }
 
-    /**
-     * Methods delete notes by filter.
-     * 0 is To Do
-     * 1 is Completed
-     */
     public void deleteAllTodoNotes() {
         mRepository.deleteNotesByStatus(0);
     }
@@ -40,11 +35,6 @@ public class MainViewModel extends AndroidViewModel {
         mRepository.deleteAllNotes();
     }
 
-    /**
-     * Methods get notes by filter.
-     * 0 is To Do
-     * 1 is Completed
-     */
     public void getAllToDoNotes() {
         mNotes = mRepository.getNotesByStatus(0);
     }

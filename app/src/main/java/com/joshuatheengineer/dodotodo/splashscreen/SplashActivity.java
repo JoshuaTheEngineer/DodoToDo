@@ -11,7 +11,7 @@ import com.joshuatheengineer.dodotodo.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private final Long SPLASH_TIME_OUT = 3000L; // 3 seconds
+    private final Long SPLASH_TIME_OUT = 2000L; // 2 seconds
     private Handler mHandler;
 
     @Override

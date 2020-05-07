@@ -39,8 +39,6 @@ public class EditorActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_check);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // if theres a saved instance, such as after an orientation change
-        // then it flags it
         if (savedInstanceState != null) {
             mEditing = savedInstanceState.getBoolean(EDITING_KEY);
         }
@@ -173,9 +171,6 @@ public class EditorActivity extends AppCompatActivity {
         finish();
     }
 
-    /**
-     * Preventive measures in case user wants to delete the note
-     */
     private void deleteNoteData() {
         deleteDialog = new AlertDialog.Builder(EditorActivity.this)
                 .setTitle("Delete Note Entry")
