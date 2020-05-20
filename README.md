@@ -118,6 +118,7 @@ Visit Tag ***v6.0.0-migrateDb***. See changes [here](https://github.com/JoshuaTh
 - [StackOverflow: Adding Multiple Views to ScrollView](https://stackoverflow.com/questions/9660328/is-it-impossible-to-add-multiple-views-to-a-scrollview)
 
 ## Step 7: Implement Incrementing and Decrementing features for Editor
+Visit Tag ***v7.1.0-fixUnitClickDefect***. See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v6.0.0-migrateDb...v7.1.0-fixUnitClickDefect)
 - I used 'Mutable LiveData' to update the UI for incrementing and decrementing those values.
 - There are some rules to keep in mind when implementing these features
     1. The goal is always more than the current number of units
@@ -125,6 +126,7 @@ Visit Tag ***v6.0.0-migrateDb***. See changes [here](https://github.com/JoshuaTh
     3. The number of units has to be at least zero or higher.
 
 ## Step 8: Implement 'To Do' and 'Completed' List DISPLAY and DELETE filter
+Visit Tag ***v7.2.0-filter***. See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v7.1.0-fixUnitClickDefect...v7.2.0-filter)
 - Use the SavedInstanceState to remember previous filter for every device configuration change
 - The AppRepository and DAO determines how the filtering is done
 - With filter, delete notes based off completion status and add Alert Dialog
@@ -139,6 +141,7 @@ Visit Tag ***v6.0.0-migrateDb***. See changes [here](https://github.com/JoshuaTh
 - [Stack Overflow: How to prevent Dialog leaked windows](https://stackoverflow.com/questions/11957409/activity-has-leaked-window-com-android-internal-policy-impl-phonewindowdecorvie)
 
 ## Step 9: Implement Notifications
+Visit Tag ***v7.3.0-notifications***. See changes [here](https://github.com/JoshuaTheEngineer/DodoToDo/compare/v7.2.0-filter...v7.3.0-notifications)
 - Added preference listeners to trigger notifications
 - Added capability to customize notification message
 
