@@ -137,3 +137,13 @@ Visit Tag ***v6.0.0-migrateDb***. See changes [here](https://github.com/JoshuaTh
 - [Alert Dialog Example](https://www.concretepage.com/android/android-alertdialog-example-with-theme-icon-and-dialoginterface-onclicklistener)
 - [Stack Overflow: How to display Alert Dialog](https://stackoverflow.com/questions/2115758/how-do-i-display-an-alert-dialog-on-android)
 - [Stack Overflow: How to prevent Dialog leaked windows](https://stackoverflow.com/questions/11957409/activity-has-leaked-window-com-android-internal-policy-impl-phonewindowdecorvie)
+
+## Step 9: Implement Notifications
+- Added preference listeners to trigger notifications
+- Added capability to customize notification message
+
+### Notes: Great Resources for Notifications
+- [Editing Setting Preferences](https://guides.codepath.com/android/Settings-with-PreferenceFragment)
+- [Android Notification Documentation](https://developer.android.com/training/notify-user/build-notification#Removing)
+- [Calling non-static method in static method in Java](https://stackoverflow.com/questions/2042813/calling-non-static-method-in-static-method-in-java)
+- [Converting PNGs to Drawables](https://stackoverflow.com/questions/52670937/how-do-i-convert-pngs-directly-to-android-vector-drawables)
