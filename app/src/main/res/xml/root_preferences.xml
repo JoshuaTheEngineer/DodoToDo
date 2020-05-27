@@ -1,12 +1,13 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory app:title="@string/notifications_header">
 
         <!-- Personalized message-->
         <EditTextPreference
             app:key="customize"
             app:title="@string/customize_title"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="Ready to Do do some tasks!!!"/>
 
         <ListPreference
             app:defaultValue="Off"
@@ -16,8 +17,25 @@
             app:title="@string/notifications_title"
             app:useSimpleSummaryProvider="true" />
 
+        <ListPreference
+            app:defaultValue="08:00"
+            app:entries="@array/time_values"
+            app:entryValues="@array/time_values"
+            app:key="time"
+            app:title="@string/time_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="AM"
+            app:entries="@array/meridian_values"
+            app:entryValues="@array/meridian_values"
+            app:key="meridian"
+            app:title="@string/meridian_title"
+            app:useSimpleSummaryProvider="true" />
+
     </PreferenceCategory>
 
+    <!-- change title to timer -->
     <PreferenceCategory app:title="@string/sync_header">
 
         <SwitchPreferenceCompat

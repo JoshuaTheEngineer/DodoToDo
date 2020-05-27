@@ -31,6 +31,7 @@ dependencies {
     def lifecycle_version = "2.2.0"
     def room_version = "2.2.5"
     def notifications_version = "28.0.0"
+    def work_version = "2.3.4"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -46,6 +47,8 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.1'
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "com.android.support:support-compat:$notifications_version"
+
+    implementation "androidx.work:work-runtime:$work_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

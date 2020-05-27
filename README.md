@@ -150,3 +150,18 @@ Visit Tag ***v7.3.0-notifications***. See changes [here](https://github.com/Josh
 - [Android Notification Documentation](https://developer.android.com/training/notify-user/build-notification#Removing)
 - [Calling non-static method in static method in Java](https://stackoverflow.com/questions/2042813/calling-non-static-method-in-static-method-in-java)
 - [Converting PNGs to Drawables](https://stackoverflow.com/questions/52670937/how-do-i-convert-pngs-directly-to-android-vector-drawables)
+
+## Step 10: Implement Day by Day notifications
+1. Add the WorkManager dependency
+2. Create a OneTimeWorkRequest to
+    - trigger the Periodic Requests an
+    - send a Notification at the exact user-set time
+
+- Use a [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager/basics)
+- To [pass parameters for Worker](https://stackoverflow.com/questions/52639001/how-to-create-a-worker-with-parameters-for-in-workmanager-for-android)
+    - WorkManager is too complicated to add custom parameters or set a specific time for notifications
+- Create a [Timer](https://www.iitk.ac.in/esc101/05Aug/tutorial/essential/threads/timer.html)
+- Using a [Timer and TimerTask](https://www.iitk.ac.in/esc101/05Aug/tutorial/essential/threads/timer.html)
+- How to create a
+    - [Delay Notification with Work Manager](https://stackoverflow.com/questions/53048327/android-workmanager-how-to-delay-task)
+    - [Delay with Work Manager from Google IssueTracker](https://issuetracker.google.com/issues/111404867)

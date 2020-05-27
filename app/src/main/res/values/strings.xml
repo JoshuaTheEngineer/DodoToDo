@@ -24,14 +24,14 @@
     <string name="action_settings">Settings</string>
 
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
+    <string name="notifications_header">Notifications</string>
     <string name="sync_header">Sync</string>
 
     <!-- Messages Preferences -->
-<!--    <string name="signature_title">Your signature</string>-->
-<!--    <string name="reply_title">Default reply action</string>-->
-    <string name="notifications_title">Notifications</string>
+    <string name="notifications_title">Notification Status</string>
     <string name="customize_title">Customize Notification Message</string>
+    <string name="meridian_title">Meridian Status</string>
+    <string name="time_title">Time</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
